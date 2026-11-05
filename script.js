@@ -3,10 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const guestRadios = document.querySelectorAll('input[name="convidados"]');
   const wrapG1 = document.getElementById("wrap-convidado-1");
   const wrapG2 = document.getElementById("wrap-convidado-2");
-  const inputG1 = document.getElementById("nome_convidado_1");
-  const inputG2 = document.getElementById("nome_convidado_2");
+  
+  // Alterado de underline (_) para hífen (-) para bater com o form.js
+  const inputG1 = document.getElementById("nome-convidado-1");
+  const inputG2 = document.getElementById("nome-convidado-2");
 
-  // Função para alternar campos com base na seleção
   function handleGuestFields(value) {
     const numConvidados = parseInt(value, 10);
 
@@ -28,19 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Escuta mudanças nos inputs de convidados
   guestRadios.forEach((radio) => {
     radio.addEventListener("change", (e) => {
       handleGuestFields(e.target.value);
     });
   });
 
-  // Lógica para se marcar "Não" na formatura, desabilitar convidados
   const presencaRadios = document.querySelectorAll('input[name="presenca"]');
   presencaRadios.forEach((radio) => {
     radio.addEventListener("change", (e) => {
       if (e.target.value === "nao") {
-        // Força 0 convidados se não vai à formatura
         const zeroRadio = document.querySelector(
           'input[name="convidados"][value="0"]',
         );
@@ -50,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Inicializa o estado correto caso o browser faça cache do formulário recarregado
   const checkedGuest = document.querySelector(
     'input[name="convidados"]:checked',
   );
